@@ -10,6 +10,9 @@ defmodule ElixirApi.Application do
     children = [
       # Starts a worker by calling: ElixirApi.Worker.start_link(arg)
       # {ElixirApi.Worker, arg}
+
+      # inicializando servidor HTTP
+      {Plug.Cowboy, scheme: :http, plug: ElixirApi.Router, options: [port: 8000]}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
