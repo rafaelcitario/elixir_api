@@ -28,4 +28,13 @@ defmodule ElixirApiTest do
     assert conn.status == 200
     assert conn.resp_body == "Hello #{name}"
   end
+
+  test "route /any return Not Found!" do
+    conn = conn(:get, "/any")
+    conn = ElixirApi.Router.call(conn, @opts)
+
+    assert conn.state == :sent
+    assert conn.status == 404
+    assert conn.resp_body == "Not Found!"
+  end
 end
